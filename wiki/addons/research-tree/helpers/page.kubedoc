@@ -1,0 +1,99 @@
+# Requirements
+Requirements are used for research nodes where certain things need to be met before researching can actually beign.
+
+>>> info
+These listed methods will all be under `Requirements`.
+`ItemRequirement`s are also **not** bound to the limit of 99 item count (as what an `ItemStack` would have. You could have 500 and it'll still work)
+<<<
+
+## Items
+- $$.item(item: Item, amount: int)
+Creates an `ItemRequirement` requiring an item with the required amount.
+
+- $$.item(item: TagKey<Item>, amount: int)
+Creates an `ItemRequirement` allowing any item tag (eg. `#c:ingots/lead`), with the required amount
+
+## Fluids
+- $$.fluid(fluid: Fluid, amount: int)
+Creates a `FluidRequirement` allowing any fluid (eg. `minecraft:water`), with the required amount (in mB)
+
+- $$.fluid(fluid: TagKey<Fluid>, amount: int)
+Creates a `FluidRequirement` allowing any fluid tag (eg. `kubejs:deadly_liquid`), with the required amount (in mB)
+
+## Energy
+- $$.energy(amount: int)
+Creates an `EnergyRequirement` with the required amount of energy (FE)
+
+## Advancement
+- $$.advancement(advancement: ResourceLocation)
+Creates an `AdvancementRequirement` requiring the player to have the advancement before proceeding
+
+- $$.advancement(advancements: ResourceLocation[])
+Creates an `AdvancementRequirement` requiring the player to have the given advancements before proceeding
+
+## Dimension
+>>> info
+When research has begun, the player must visit the dimension in order for it to be counted as fulfilled
+<<<
+
+- $$.dimension(dimension: RegistryKey<Level>)
+Creates a `DimensionRequirement` requiring the player to visit the dimension (eg. `minecraft:the_end`)
+
+- $$.dimension(dimensions: RegistryKey<Level>[])
+Creates a `DimensionRequirement` requiring the player to visit the dimension (eg. `minecraft:the_end` and `minecraft:the_nether`)
+
+## Time
+- $$.time(ticks: int)
+Creates a `TimeRequirement` requiring the player to wait a certain amount of time
+
+# Rewards
+>>> info
+These listed methods will all be under `Rewards`.
+<<<
+
+## Items
+- $$.item(item: Item, amount: int)
+Creates an `ItemReward` granting the player the item(s)
+
+- $$.item(stack: ItemStack)
+Creates an `ItemReward` from a given `ItemStack`
+
+## Command Execution
+>>> info
+This will execute a command with permission level `2`, and it will be like the player ran it ignoring player permission level.
+To target the player, you can do `@s` or `@p` for the player who has been rewarded.
+Commands are not required to have a `/` at the start (eg. `/kill @p` will do the same as `kill @p`)
+<<<
+
+- $$.command(command: String)
+Executes a command as the player (eg `title @p title {"text":"Research Complete!","color":"gold"}`)
+
+- $$.command(command: String, diplayName: Component)
+Executes a command as the player. Display name will show up instead of the command (eg: you can do `kill @s` and have the display name as `Text.of("200 diamond blocks!!")`)
+
+## Experience Points
+- $$.xp(amount: int)
+Grants the player an amount of xp points (**NOT** levels)
+
+- $$.xpLevels(amount: int)
+Grants the player an amount of xp levels
+
+## Attribute Modification
+>>> warn
+Any attributes changed to the player (eg max health) are **permanent** changes.
+The modifier id must also be unique.
+<<<
+- $$.attribute(attribute: ResourceLocation, modifierId: ResourceLocation | String, amount: double, operation: AttributeModifier.Operation?)
+Modifies the player's attributes to one via the reward. If the `operation` argument is not present, it will default to `AttributeModifier.Operation.ADD_VALUE`.
+
+## Loot Tables
+- $$.lootTable(lootTableId: ResourceLocation)
+Grants the player a loot table that is rolled.
+
+## Mob Effects
+- $$.effect(effectInstance: MobEffectInstance)
+Gives the player an effect. To make `MobEffectInstance`, see `MobEffectUtil`
+
+## Recipe Unlocking
+- $$.unlockRecipes(recipes: ResourceLocation[])
+Unlocks the given recipes to the player

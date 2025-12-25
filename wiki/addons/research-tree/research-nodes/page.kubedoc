@@ -1,0 +1,53 @@
+All the following scripts go into {st-s}
+
+# Creating Research Nodes
+Everything will go under the `ResearchTree.research` event
+
+- $$create(id: String)
+>>> info
+Internally, this constructs a `ResourceLocation` that get's set to `kubejs:[the id you chose]`
+<<<
+
+## Methods
+
+- $$.icon(icon: Item)
+The icon is just an item to point render. (eg, `minecraft:dirt` would render dirt for example)
+
+- $$.pos(x: int, y: int)
+There is also `position` that does the exact same thing
+
+- $$.title(title: Component)
+Overrides the default name (the id of the node formatted) to a custom one. Use `Text#of` for the argument
+
+- $$.description(description: Component)
+Creates a description for the research node
+
+- $$.prerequisite(prerequisite: ResourceLocation)
+This can be attached multipule times to make other research nodes required to unlock this node. 
+To get the research node id, enable advanced tooltips via `F3+H`
+
+- $$.requires(requirement: ResearchRequirement)
+See (link the `helpers#Requirements` here) for possible requirements.
+
+- $$.reward(reward: ResearchReward)
+See (link the `helpers#Rewards` here) for possible rewards.
+
+- $$.category(category: ResourceLocation)
+Links the node to a category
+
+- $$.hidden()
+Hides the research from being viewed
+
+- $$.ticksPerPercent(ticksPerPercent: int)
+For every `1%` of research, the player must wait the ticks set in `ticksPerPercent` for `1%` of progression.
+
+| Method | Type         | Defaults To |
+| `icon` | ==REQUIRED== | - |
+| `pos`  | ==REQUIRED== | - |
+| `title` | ==OPTIONAL== | Defaults to formatted id |
+| `description` | ==OPTIONAL== | No description is provided |
+| `prerequisite` | ==OPTIONAL== | When none provided, does not rely on other nodes to be unlocked |
+| `requires` | ==OPTIONAL== | When none provided, researching begins immedentally |
+| `reward` | ==OPTIONAL== | When none provided, no rewards are granted |
+| `category` | ==OPTIONAL== | Defaults to the uncategorized section |
+| `ticksPerPercent` | ==OPTIONAL== | Defaults to `100` ticks per `1%` (`10000` total ticks) |
