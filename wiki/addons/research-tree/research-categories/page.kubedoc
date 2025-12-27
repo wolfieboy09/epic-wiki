@@ -16,10 +16,10 @@ For example, `create('super_cool_category')` will get constructed as `kubejs:sup
 <<<
 
 ## Methods
-- $$.name(name: Component)
-Overrides the default name (the id of the category formatted) to a custom one. Use `Text#of` for the argument.
+- $$.name(name: Text)
+Overrides the default name (the id of the category formatted) to a custom one.
 
-- $$.description(description: Component)
+- $$.description(description: Text)
 Creates a description for the category
 
 - $$.icon(icon: Item)
