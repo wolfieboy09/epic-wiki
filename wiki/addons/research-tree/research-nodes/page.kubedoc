@@ -26,10 +26,10 @@ The icon is just an item to point render. (eg, `minecraft:dirt` would render dir
 - $$.pos(x: int, y: int)
 There is also `position` that does the exact same thing
 
-- $$.title(title: Component)
+- $$.title(title: Text)
 Overrides the default name (the id of the node formatted) to a custom one. Use `Text#of` for the argument
 
-- $$.description(description: Component)
+- $$.description(description: Text)
 Creates a description for the research node
 
 - $$.prerequisite(prerequisite: ResourceLocation)
