@@ -50,9 +50,9 @@ Hides the research from being viewed
 - $$.ticksPerPercent(ticksPerPercent: int)
 For every `1%` of research, the player must wait the ticks set in `ticksPerPercent` for `1%` of progression.
 
-| Method | Type         | Defaults To |
-| `icon` | ==REQUIRED== | - |
-| `pos`  | ==REQUIRED== | - |
+| Method | Type         | Notes |
+| `icon` | ==REQUIRED== | Not required for research node modification  |
+| `pos`  | ==REQUIRED== | Not required for research node modification |
 | `title` | ==OPTIONAL== | Defaults to formatted id |
 | `description` | ==OPTIONAL== | No description is provided |
 | `prerequisite` | ==OPTIONAL== | When none provided, does not rely on other nodes to be unlocked |
