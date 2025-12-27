@@ -83,7 +83,7 @@ Grants the player an amount of xp levels
 Any attributes changed to the player (eg max health) are **permanent** changes.
 The modifier id must also be unique.
 <<<
-- $$.attribute(attribute: ResourceLocation, modifierId: ResourceLocation, amount: double, operation: AttributeModifier.Operation?)
+- $$.attribute(attribute: ResourceLocation, modifierId: ResourceLocation, amount: double, operation: AttributeModifierOperation?)
 Modifies the player's attributes to one via the reward. If the `operation` argument is not present, it will default to `AttributeModifier.Operation.ADD_VALUE`.
 
 ## Loot Tables
