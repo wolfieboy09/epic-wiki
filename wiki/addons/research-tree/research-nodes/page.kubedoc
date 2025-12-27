@@ -14,7 +14,8 @@ Modifies a research node (eg. `another_mod:super_cool_researchable`). For method
 
 - $$create(id: ResourceLocation)
 >>> info
-Internally, this constructs a `ResourceLocation` that get's set to `kubejs:[the id you chose]`
+Internally, this constructs a `ResourceLocation` that get's set to `kubejs:[the id you chose]`.
+For example, `create('my_research_node')` will get constructed as `kubejs:my_research_node`.
 <<<
 
 ## Methods
