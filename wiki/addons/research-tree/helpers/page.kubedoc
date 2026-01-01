@@ -97,3 +97,7 @@ Gives the player an effect. To make `MobEffectInstance`, see `MobEffectUtil`
 ## Recipe Unlocking
 - $$.unlockRecipes(recipes: ResourceLocation[])
 Unlocks the given recipes to the player
+
+## Custom Rewards
+- $$.custom(kubeReward: ResourceLocation)
+Allows you to define a reward created with KubeJS
