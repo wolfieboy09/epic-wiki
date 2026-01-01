@@ -1,0 +1,31 @@
+A Guide on how to register custom requirements and rewards
+All the following code goes into {st-s}
+
+# Custom Requirements
+```js
+StartupEvents.registry("researchtree:requirement_types", event => {
+    //TODO write this section
+})
+```
+
+
+# Custom Rewards
+```js
+StartupEvents.registry("researchtree:reward_types", event => {
+    // This is the reward type. This will be kubejs:my_reward
+    // This is important for defining rewards on research nodes
+    event.create("my_reward")
+
+        // This is OPTIONAL. You should have this because you're making a custom reward...
+        // This gives you both the player and the level
+        .grant((player, level) => {
+            // Here you can do anything that involves the player and level
+        })
+
+        // Display text is OPTIONAL
+        // By default, the lang key would be "reward.kubejs.<reward id from event.create>"
+        // So this example would be "reward.kubejs.my_reward"
+        // You can define a lang key, or this method
+        .displayText(Text.of("My epic reward"))
+})
+```

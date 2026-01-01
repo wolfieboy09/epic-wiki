@@ -46,6 +46,10 @@ Creates a `DimensionRequirement` requiring the player to visit the dimension (eg
 - $$.time(ticks: int)
 Creates a `TimeRequirement` requiring the player to wait a certain amount of time
 
+## Custom Requirements
+- $$.custom(kubeRequirement: ResourceLocation)
+Allows you to use a requirement created with KubeJS
+
 # Rewards
 >>> info
 These listed methods will all be under `Rewards`.
@@ -100,4 +104,4 @@ Unlocks the given recipes to the player
 
 ## Custom Rewards
 - $$.custom(kubeReward: ResourceLocation)
-Allows you to define a reward created with KubeJS
+Allows you to use a reward created with KubeJS
