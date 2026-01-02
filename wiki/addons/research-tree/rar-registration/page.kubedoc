@@ -20,7 +20,7 @@ StartupEvents.registry("researchtree:requirement_types", event => {
         .progress(player => {
             // Example: check diamond count (max 64)
             let count = 0
-            player.inventory.getAllItems().forEach(stack => {
+            player.inventory.allItems.forEach(stack => {
                 if (stack.id == 'minecraft:diamond') {
                     count += stack.count
                 }
