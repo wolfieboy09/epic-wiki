@@ -30,7 +30,7 @@ StartupEvents.registry("researchtree:requirement_types", event => {
 
         // Display text is OPTIONAL
         // By default, the lang key would be "requirement.kubejs.<requirement id>"
-        // So this example would be "requirement.researchtree.my_requirement"
+        // So this example would be "requirement.kubejs.my_requirement"
         // You can define a lang key, or use this method
         .displayText(Text.of("Must have diamonds"))
 })
