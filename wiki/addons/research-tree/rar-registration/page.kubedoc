@@ -13,7 +13,7 @@ StartupEvents.registry("researchtree:requirement_types", event => {
 ```js
 StartupEvents.registry("researchtree:reward_types", event => {
     // This is the reward type. This will be kubejs:my_reward
-    // This is important for defining rewards on research nodes
+    // This is important for defining rewards on research nodes (and category dependencies)
     event.create("my_reward")
 
         // This is OPTIONAL. You should have this because you're making a custom reward...
