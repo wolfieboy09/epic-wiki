@@ -202,8 +202,14 @@ ServerEvents.recipes(event => {
     .allowAllVatTypes() // Does not matter on the vat type we use, so we allow the three TFMG vat types
     .machines("tfmg:mixing") // Make it where you have to have a mixer machine on top of the vat
     .processingTime(250) // Takes 250 ticks to make the ingredients into lava and mud
+    .pressure(1.2) // Makes the vat pressure require "1.2" pressure
 })
 ```
+
+>>> warning
+Vat **pressure** only exists on TFMG versions `1.2.2` and above.
+Attempting to use this on an older version of TFMG will result in the recipe erroring.
+<<<
 
 >>> info
 To add more machines (for example, requiring 3 electrodes), you just add more into the "machines" method. (Example: `[js].machines("tfmg:electrode", "tfmg:electrode", "tfmg:electrode")`)
