@@ -13,7 +13,7 @@ Information:
 - Item output cannot have more than 3 item outputs
 
 Example:
-|> 1.20.1
+|> 1.20.1+
 ```js
 ServerEvents.recipes(event => {
   event.recipes.tfmg.casting("minecraft:lava", "minecraft:sand", 150)
@@ -36,7 +36,7 @@ Information:
 - Fluid output cannot have more than 2 fluid outputs
 
 Example:
-|> 1.20.1
+|> 1.20.1+
 ```js
 ServerEvents.recipes(event => {
   event.recipes.tfmg.coking("minecraft:mud", ["minecraft:dirt", Fluid.water(1000)], 200)
@@ -59,7 +59,7 @@ Information:
 - The order of fluid outputs goes from bottom to top (from lower to higher index)
 
 Example:
-|> 1.20.1
+|> 1.20.1+
 ```js
 ServerEvents.recipes(event => {
   event.recipes.tfmg.distillation("minecraft:water", ["tfmg:air", "minecraft:lava"])
@@ -81,7 +81,7 @@ Information:
 - Fluid output cannot have more than 3 fluid outputs
 
 Example:
-|> 1.20.1
+|> 1.20.1+
 ```js
 ServerEvents.recipes(event => {
   event.recipes.tfmg.industrial_blasting(["minecraft:anvil", "minecraft:dirt"], ["minecraft:water"], 200)
@@ -103,7 +103,7 @@ Information:
 - Item output cannot have more than 1 item output
 
 Example:
-|> 1.20.1
+|> 1.20.1+
 ```js
 ServerEvents.recipes(event => {
   event.recipes.tfmg.polarizing("minecraft:sand", "minecraft:glass", 500)
@@ -118,7 +118,7 @@ ServerEvents.recipes(event => {
 <|
 
 >>> danger
-The below types don't exist on 1.19.2!
+The types below don't exist in `1.19.2`!
 <<<
 
 # Winding
@@ -153,12 +153,23 @@ ServerEvents.recipes(event => {
 
 # Chemical Vat
 Syntax:
+|> 1.20.1
 ```js
 vat_machine_recipe([itemIngredient | fluidIngredient], [itemOutput | fluidOutput], machines[]?, vatTypes[]?, minSize?, processingTime?, heatRequirement?)
 ```
+<||> 1.21.1
+  ```js
+    vat_machine_recipe([itemIngredient | fluidIngredient], [itemOutput | fluidOutput], machines[]?, allowed_vat_types[]?, min_size?, processingTime?, heat_level?, pressure?)
+  ```
+<|
 
 >>> success
-Read the info below so the syntax is less confusing!
+Please read the info below so the syntax is less confusing.
+<<<
+
+>>> warn
+On `1.20.1`, vats use `.heated()` and `.superHeated()`. 
+On `1.21.1`, vats use `.heatLevel(level)` in place of the above heat requirements.
 <<<
 
 Information:
@@ -169,13 +180,16 @@ Information:
 - Fluid output cannot have more than 4 fluid outputs
 - Chemical vats can be heated by doing the following:
   - Heatless recipes do not need this method attached
-  - Heated vat can be added by attaching `.heated()`
-  - Superheated vat can be added by attaching `.superheated()`
+  - `1.20.1` Only:
+    - Heated vat can be added by attaching `.heated()`
+    - Superheated vat can be added by attaching `.superheated()`
+  - `1.21.1` Only:
+    - Vats can have a heat level requirement from `.heatLevel(level)`
 - Machines to make the results can have:
   - Graphite electrode can be added by doing `.machines("tfmg:graphite_electrode")`
   - Centrifuge can be added by doing `.machines("tfmg:centrifuge")`
   - Mixing can be added by doing `.machines("tfmg:mixing")`
-  - Electrode can be added by doing `.machines("electrode")`
+  - Electrode can be added by doing `.machines("tfmg:electrode")`
   - Note: you can "mix-and-match" them by doing (for example): `.machines("tfmg:mixing", "tfmg:electrode")`
   - Note: to note, use any machine; you do not need to use this method at all.
 - Chemical vat types to make the results can have:
@@ -190,6 +204,7 @@ Information:
 - The output also supports items with a chance of being made with `Item.of("item here").withChance(chance here)` (Chance is from a 0-1 scale)
 
 Example:
+|> 1.20.1
 ```js
 ServerEvents.recipes(event => {
   event.recipes.tfmg.vat_machine_recipe("minecraft:dirt", "minecraft:diamond")
@@ -202,9 +217,26 @@ ServerEvents.recipes(event => {
     .allowAllVatTypes() // Does not matter on the vat type we use, so we allow the three TFMG vat types
     .machines("tfmg:mixing") // Make it where you have to have a mixer machine on top of the vat
     .processingTime(250) // Takes 250 ticks to make the ingredients into lava and mud
+})
+```
+<||> 1.21.1
+```js
+ServerEvents.recipes(event => {
+  event.recipes.tfmg.vat_machine_recipe("minecraft:dirt", "minecraft:diamond")
+    .heatLevel(2.0) // Heat level 2 is pretty hot
+    .allowedVatTypes("tfmg:firebrick_lined_vat") // It's super hot, so we should use the firebrick vat for some realism
+    .processingTime(500) // Takes 500 ticks to make dirt to diamonds
+    .machines("tfmg:electrode", "tfmg:electrode", "tfmg:electrode") // The ponder says to use three for blast furnace type recipes
+
+  event.recipes.tfmg.vat_machine_recipe(["tfmg:sulfuric_acid", "tfmg:hot_air", "minecraft:water"], ["minecraft:lava", "minecraft:mud"])
+    .heatLevel(1.6) // Make this require heat level 1.6
+    .allowAllVatTypes() // Does not matter on the vat type we use, so we allow the three TFMG vat types
+    .machines("tfmg:mixing") // Make it where you have to have a mixer machine on top of the vat
+    .processingTime(250) // Takes 250 ticks to make the ingredients into lava and mud
     .pressure(1.2) // Makes the vat pressure require "1.2" pressure
 })
 ```
+<|
 
 >>> warning
 Vat **pressure** only exists on TFMG versions `1.2.2` and above.
