@@ -84,9 +84,9 @@ PortalEvents.register(event => {
     })
 
 
-    //
+    // Called after a portal is ignited
     .afterIgnite(context => {
-	Same context as beforeIgnite, but does not need anything returned
+	// Same context as beforeIgnite, but does not need anything returned
     })
 })
 ```
