@@ -54,11 +54,39 @@ PortalEvents.register(event => {
        console.log("Teleported: " + entity.getName().getString())
     })
 
-    // (optional) Create a sound from sound event data to play to the player before/after teleportation
+    // (Optional) Create a sound from sound event data to play to the player before/after teleportation
     // Example: play the ALLAY_THROW sound at pitch 1 and volume 1
     .inPortalAmbienceSound(SoundEvents.ALLAY_THROW, 1, 1)
 
-    // Example: play the ALLAY_DEATG sound at pitch 1 and volume 1
+    // Example: play the ALLAY_DEATH sound at pitch 1 and volume 1
     .afterTeleportationAmbienceSound(SoundEvents.ALLAY_DEATH, 1, 1)
+
+    // (Optional) Called before a portal is ignited
+    // If used, requires a return of true or false
+    .beforeIgnite(context => {
+  	// If a portal is ignited from a player, you can get the player.
+	// This can be null is a player did not ignite the portal
+    	context.player()
+	
+	// The level the portal is being ignited in
+	context.level()
+
+	// Position of where ignition is
+	context.portalPos()
+
+	// Position of the frame block that triggered ignition
+	context.framePos()
+	
+	// How the portal is being ignited
+	context.ignitionSource()
+
+	return true // Allow the portal to be ignited, or return false to prevent it
+    })
+
+
+    //
+    .afterIgnite(context => {
+	Same context as beforeIgnite, but does not need anything returned
+    })
 })
 ```
