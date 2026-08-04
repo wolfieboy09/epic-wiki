@@ -21,9 +21,6 @@ For example, `create('my_research_node')` will get constructed as `kubejs:my_res
 `[java].icon(icon: Item)`
 The item icon that will be rendered for the node. (eg, `minecraft:dirt` would render dirt, for example)
 
-`[java].pos(x: int, y: int)`
-There is also `position` that does the same thing
-
 `[java].title(title: Text)`
 Overrides the default name (the node's id formatted) with a custom one. Use `Text#of` for the argument
 
@@ -51,7 +48,6 @@ For every `1%` of research, the player must wait the ticks set in `ticksPerPerce
 
 | Method | Type         | Notes |
 | `icon` | ==REQUIRED== | Not required for research node modification  |
-| `pos`  | ==REQUIRED== | Not required for research node modification |
 | `title` | ==OPTIONAL== | Defaults to formatted id |
 | `description` | ==OPTIONAL== | No description is provided |
 | `prerequisite` | ==OPTIONAL== | When none provided, does not rely on other nodes to be unlocked |
